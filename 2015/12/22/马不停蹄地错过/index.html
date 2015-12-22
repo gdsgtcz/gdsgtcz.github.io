@@ -88,7 +88,7 @@ Sa">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-e2026b01b9e41e27.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-9b2adf4318d51473.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-93418cd8503ea905.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2015-12-22T09:53:42.000Z">
+<meta property="og:updated_time" content="2015-12-22T09:54:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="马不停蹄地错过">
 <meta name="twitter:description" content="本文简单介绍下将iOS项目中生成的.app文件生成可以直接安装的.ipa文件的几种方式。
@@ -356,14 +356,14 @@ Sa">
 <p><img src="http://upload-images.jianshu.io/upload_images/1195707-9b2adf4318d51473.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="65524A09-0E45-483B-AB80-AA1B0E3C927A.png"></p>
 </li>
 </ul>
-<p>#2.通过iTunes<br>这种方式十分简单，通过把编译后的.app文件拖入iTunes，生成.ipa文件。</p>
+<h1 id="2-_u901A_u8FC7iTunes"><a href="#2-_u901A_u8FC7iTunes" class="headerlink" title="2.通过iTunes"></a>2.通过iTunes</h1><p>这种方式十分简单，通过把编译后的.app文件拖入iTunes，生成.ipa文件。</p>
 <ul>
 <li>拔掉所有联机的设备，选择target-&gt;”iOS Device” 方式进行编译。</li>
 <li>编译成功，搜索appName.app所在位置(appName为你的应用名称)。</li>
 <li>打开iTunes，选择”应用程序”,将生成的.app文件拖入，如果已经存在该应用，先删除。</li>
 <li>拖出该应用，即生成.ipa文件</li>
 </ul>
-<p>#3.直接压缩改后缀名<br>简单暴力，可以手动压缩改后缀名，也可通过脚本实现。下面分别介绍：<br><strong>1.手动压缩后改后缀名</strong></p>
+<h1 id="3-_u76F4_u63A5_u538B_u7F29_u6539_u540E_u7F00_u540D"><a href="#3-_u76F4_u63A5_u538B_u7F29_u6539_u540E_u7F00_u540D" class="headerlink" title="3.直接压缩改后缀名"></a>3.直接压缩改后缀名</h1><p>简单暴力，可以手动压缩改后缀名，也可通过脚本实现。下面分别介绍：<br><strong>1.手动压缩后改后缀名</strong></p>
 <ul>
 <li>拔掉设备，Xcode编译生成.app文件</li>
 <li>新建“Payload”文件夹，注意名字要一字不差</li>
@@ -521,7 +521,7 @@ Sa">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Apple_u63A8_u8350_u65B9_u5F0F_uFF1AXcode_u7684Archive_u529F_u80FD"><span class="nav-number">1.</span> <span class="nav-text">1.Apple推荐方式：Xcode的Archive功能</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Apple_u63A8_u8350_u65B9_u5F0F_uFF1AXcode_u7684Archive_u529F_u80FD"><span class="nav-number">1.</span> <span class="nav-text">1.Apple推荐方式：Xcode的Archive功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-_u901A_u8FC7iTunes"><span class="nav-number">2.</span> <span class="nav-text">2.通过iTunes</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-_u76F4_u63A5_u538B_u7F29_u6539_u540E_u7F00_u540D"><span class="nav-number">3.</span> <span class="nav-text">3.直接压缩改后缀名</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
