@@ -1,0 +1,962 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="##前提众所周知，开发iOS应用必须要有iOS证书(Certificates)和配置文件(Provisioning Profiles),那么问题来了：
+
+1.什么是iOS证书，它是如何与app应用关联的？2.iOS开发证书和生产证书有何区别，如何使用的？3.证书与配置文件(Provisioning Profiles)是什么关系，配置文件在Xcode中如何使用？4.证书以及配置文件如何申请？5.什么">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS开发证书与配置文件的使用">
+<meta property="og:url" content="http://yoursite.com/2015/12/22/iOS开发证书与配置文件的使用/index.html">
+<meta property="og:site_name" content="明天不用上课">
+<meta property="og:description" content="##前提众所周知，开发iOS应用必须要有iOS证书(Certificates)和配置文件(Provisioning Profiles),那么问题来了：
+
+1.什么是iOS证书，它是如何与app应用关联的？2.iOS开发证书和生产证书有何区别，如何使用的？3.证书与配置文件(Provisioning Profiles)是什么关系，配置文件在Xcode中如何使用？4.证书以及配置文件如何申请？5.什么">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-eba14215480b44fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-6d97e674ee08b1f5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-925259aa6b3fc5e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-6f6159fc2c454a72.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-5bb71310a5d5a46a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-13003bf591610898.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-1d13f126fdc86b53.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-aebe2e2e8359744c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-2cec6e17547de848.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-e628fd81b6416ea4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-f18d18fa90c58493.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-835d4ebec2c54782.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-a7aa7b9c62ca8c93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-50c0a70b05c1925c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-7d92ab346179654d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-9d1e211a9d0f1eb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-9d2930732290b135.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-2044905ac0d4042d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-3e1f5b32f5d8d6ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-82a67a6aa7b9cdca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-e4db5bbd76f6b1a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-f2b55ff478277372.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-802cf5bee44c638d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-97d86f7d186c05f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-8f31e4bfd5eb2a88.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-2a813179f8208773.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-ad44e5465b913cdd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-c79c2d260db2d681.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-5206a01d9e240e4d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-df8253c97b22d162.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-dbe354eee3519cea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-d38e19f0b14ba6f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-aa4e3036ae1f439a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-ee12b16ca2f1b477.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2015-12-22T10:30:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS开发证书与配置文件的使用">
+<meta name="twitter:description" content="##前提众所周知，开发iOS应用必须要有iOS证书(Certificates)和配置文件(Provisioning Profiles),那么问题来了：
+
+1.什么是iOS证书，它是如何与app应用关联的？2.iOS开发证书和生产证书有何区别，如何使用的？3.证书与配置文件(Provisioning Profiles)是什么关系，配置文件在Xcode中如何使用？4.证书以及配置文件如何申请？5.什么">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always',
+    motion: true
+  };
+</script>
+
+  <title> iOS开发证书与配置文件的使用 | 明天不用上课 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">明天不用上课</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'E6xURGGFcXrsEfS3P1F1','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS开发证书与配置文件的使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-22T18:29:43+08:00" content="2015-12-22">
+              2015-12-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/22/iOS开发证书与配置文件的使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/22/iOS开发证书与配置文件的使用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          <span>&nbsp; | &nbsp;
+          热度 <span id="busuanzi_value_page_pv" ></span>°C
+          </span>    
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>##前提<br>众所周知，开发iOS应用必须要有iOS证书(Certificates)和配置文件(Provisioning Profiles),那么问题来了：</p>
+<blockquote>
+<p>1.什么是iOS证书，它是如何与app应用关联的？<br>2.iOS开发证书和生产证书有何区别，如何使用的？<br>3.证书与配置文件(Provisioning Profiles)是什么关系，配置文件在Xcode中如何使用？<br>4.证书以及配置文件如何申请？<br>5.什么是Key Pair(公钥/私钥)？如何与证书关联的？<br>6.签名的作用是什么？</p>
+</blockquote>
+<p>##准备工作<br>如果想要进行iOS开发，首先要具备下面一些条件：<br><strong>1.首先，要有苹果开发者账号(Apple Developer Account)</strong></p>
+<ul>
+<li>只有拥有开发者账号，才能申请开发/发布证书及相应配置文件。</li>
+<li>开发者账号分为Individual（个人或公司开发者账号$99）和Company/Organization（企业开发者账号$299）两种类型。</li>
+</ul>
+<p><strong>2.若要进行真机调试，必须至少拥有一台装有Mac OS X/Xcode的Mac开发机（iMac or MacBook）</strong></p>
+<p>#1.登陆iOS Dev Center<br>如果已经拥有苹果开发者账号，直接登录<a href="https://developer.apple.com/account/ios" target="_blank" rel="external"><strong>苹果开发者中心</strong></a>申请开发证书。</p>
+<ul>
+<li>登录界面<br><img src="http://upload-images.jianshu.io/upload_images/1195707-eba14215480b44fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="F323D07E-B16C-43D6-AF31-7B681C9EFCA7.png"></li>
+<li>选择“Certificates, Identifiers &amp; Profiles”项进入后显示下面界面，iOS Apps一栏中任意选择一项</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-6d97e674ee08b1f5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="EB52CB59-2C2C-4DB8-8F4E-F9F3F1BB28FB.png"></p>
+<ul>
+<li>进入到如图界面</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-925259aa6b3fc5e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="5F9C1BE5-46DB-4023-AD0E-1F717AEB80AE.png"><br><strong>下面就这四项，分别介绍</strong></p>
+<p>#2.Certificates(证书)，Identifiers(标识符)，Devices(设备)，Provisioning Profiles(供应配置文件)<br>为了方便理解，我们把顺序打乱，分别介绍这四项。</p>
+<p>##2.1. Identifiers<br>Identifiers即标识符，相当于身份证，用于创建以下三个ID：<br>App IDs<br>Pass Type IDs<br>Website Push IDs</p>
+<p>###2.1.1.关于App IDs<br>其中，App ID是应用的唯一标识符：</p>
+<ul>
+<li>App ID和Xcode中的Bundle Identifier是一致（Explicit）的或匹配（Wildcard）的。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-6f6159fc2c454a72.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="FEDE676C-1DFC-4958-B52E-3B2DF73A35B3.png"></p>
+<ul>
+<li>App ID字符串通常以反域名（reverse-domain-name）格式的Company Identifier（Company ID）作为前缀（Prefix/Seed），一般不超过255个ASCII字符。</li>
+<li>用户可在Developer MemberCenter网站上注册（Register）或删除（Delete）已注册的App IDs。</li>
+</ul>
+<p>###2.1.2.创建App ID</p>
+<ul>
+<li>在“ Identifiers”一栏下选择“App IDs”，可查看所有已申请的App IDs,点击右上“＋”</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-5bb71310a5d5a46a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1EF8FB56-E265-4B97-A8BE-327841B86814.png"></p>
+<ul>
+<li>进入Register iOS App ID界面，在“App ID Description”栏下的“Name”项中输入名称<br><img src="http://upload-images.jianshu.io/upload_images/1195707-13003bf591610898.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="72E71207-FB31-4BC6-8E03-7EDADE9A82EC.png"></li>
+<li>在“Explicit App ID”栏下的“Bundle ID”项中输入App ID（反域名格式，如：com.company.test）<ul>
+<li>这里“Bundle ID”对应Xcode中的“Bundle identifier”</li>
+<li>Explicit App ID：唯一的App ID，用于唯一标识一个应用程序。例如“com.apple.garageband”这个App ID，用于标识Bundle Identifier为“com.apple.garageband”的App。</li>
+<li>Wildcard App ID：含有通配符的App ID，用于标识一组应用程序。例如“<em>”（实际上是Application Identifier Prefix）表示所有应用程序；而“com.apple.</em>”可以表示Bundle Identifier以“com.apple.”开头（苹果公司）的所有应用程序。<br><img src="http://upload-images.jianshu.io/upload_images/1195707-1d13f126fdc86b53.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="378CCEC6-8B91-4CD8-AD2D-027A49B8AA02.png"></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>在“App Services”栏下选择应用要使用到的服务（如要使用推送功能，勾选“Push Notifications”）</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-aebe2e2e8359744c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="423D58C6-2535-4726-98C6-500658BD1141.png"></p>
+<ul>
+<li>点击continue-&gt;点击submit-&gt;点击done，申请App IDs完成。点击All IDs可查看申请的ID，点击该ID</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-2cec6e17547de848.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="453733A7-ABE7-4696-95EE-45168BD75172.png"></p>
+<ul>
+<li>点击“Edit”可对该App ID进行编辑</li>
+</ul>
+<p>##2.2. Certificates </p>
+<p>###2.2.1. 描述<br>iOS证书是用来证明iOS App内容（executable code）的合法性和完整性的数字证书。对于想安装到真机或发布到AppStore的应用程序（App），只有经过签名验证（Signature Validated）才能确保来源可信，并且保证App内容是完整、未经篡改的。</p>
+<ul>
+<li>数字证书是一个经证书授权中心数字签名的包含公开密钥拥有者信息以及公开密钥的文件。具有时效性，只在特定的时间段内有效。</li>
+<li>iOS证书分两种：<strong>开发证书（Development）</strong>和<strong>生产证书（Production）</strong>。</li>
+</ul>
+<blockquote>
+<ol>
+<li>开发证书用于开发和调试应用程序，可用于联机调试。</li>
+<li>生产证书用来发布应用程序。</li>
+</ol>
+</blockquote>
+<p>###2.2.2. 生成证书请求文件（CSR）<br>可以通过Keychain（钥匙串）证书助理从证书颁发机构请求证书。在iOS Dev Center中添加证书（Certificates）时，需要上传改CSR文件。</p>
+<ul>
+<li>打开Keychain（钥匙串），点击菜单栏“钥匙串访问”-&gt;“证书助理”-&gt;“从证书颁发机构请求证书”</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-e628fd81b6416ea4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="64A49729-3C03-4F8F-9910-3E9688235B86.png"></p>
+<ul>
+<li>填写开发账号邮件和常用名称，勾选“存储到磁盘”。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-f18d18fa90c58493.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="096ED51F-A832-4DA5-BBB0-FEBA17BE4764.png"></p>
+<ul>
+<li>继续并选择存储位置后，Keychain将生成一个包含开发者身份信息的CSR（Certificate Signing Request）文件。同时，Keychain Access-&gt;Keys（密钥）中增加一对Public/Private Key Pair。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-835d4ebec2c54782.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="DAB324D4-D886-4097-A54D-1E37038A87A1.png"></p>
+<blockquote>
+<ol>
+<li>私钥（private key）始终保存在Mac OS的Keychain Access中，用于签名（CodeSign）对外发布的App。</li>
+<li>公钥（public key）一般随证书散布出去，对App签名进行校验认证。</li>
+</ol>
+</blockquote>
+<p>###2.2.3.申请证书</p>
+<ul>
+<li>进入iOS Dev Center，“Certificate”-&gt;“All”,点击右上角“＋”（也可直接点击“Certificate”下的“Development”或“Production”，直接选择申请开发证书或生产证书），进入如下界面：</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-a7aa7b9c62ca8c93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="F5FABF55-157A-47BB-B3A3-3A0125ABAFDC.png"></p>
+<ul>
+<li>选择开发证书或者生产证书，这里以生产证书为例，继续</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-50c0a70b05c1925c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="DB782EBE-01C6-48A1-A83E-A6B6CAC5D349.png"></p>
+<ul>
+<li>选择App ID，即我们在“ Identifiers”中创建的App ID，继续</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-7d92ab346179654d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="62F40B5F-4FA9-49C3-B707-46EADD3EC28A.png"></p>
+<ul>
+<li>这里介绍如何生产证书请求文件，即我们在“2.2.2. 生成证书请求文件（CSR）”中生成的.certSigningRequest文件，这里继续</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-9d1e211a9d0f1eb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1A7B633E-B61B-4E63-8EEB-B0D15D0B053E.png"></p>
+<ul>
+<li>这里需要添加生成的证书请求文件（CSR），“Choose File”选择生成的.certSigningRequest文件，点击“Generate”，如图申请开发证书完成，申请生产证书流程类似，这里不再赘述。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-9d2930732290b135.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="9D2FC3A0-7FC7-43A9-8C3D-B60F108528ED.png"></p>
+<ul>
+<li>我们可以点击“Download”下载该开发证书，或者在“Certificates”-&gt;“All”中查看该证书，并进行下载或删除，如图：</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-2044905ac0d4042d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="A9690706-6620-4A3D-9B9A-D727EFFC9179.png"></p>
+<ul>
+<li>下载证书，双击导入Keychain Access，可在Keychain Access-&gt;“证书”中查看</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-3e1f5b32f5d8d6ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2015-12-06 下午5.40.06.png"></p>
+<ul>
+<li>展开安装的证书（ios_development.cer）前面的箭头，可以看到其对应的私钥。在KeychainAccess-&gt;“密钥”中展开创建CSR时生成的Key Pair中的私钥前面的箭头，可以查看到包含其对应公钥的证书.</li>
+</ul>
+<p>###2.2.4.导出证书</p>
+<ul>
+<li>打开Keychain Access，选择安装成功的证书，右键选择“导出”</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-82a67a6aa7b9cdca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1EF53825-B4C4-43B6-A0D8-536FE32AEB81.png"></p>
+<ul>
+<li>输入名字，默认格式为.p12类型，选择“Save”</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-e4db5bbd76f6b1a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="72BA1D21-C005-4A7B-81B6-3B8ADC62872D.png"></p>
+<ul>
+<li>设置密码，点击“OK”</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-f2b55ff478277372.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="47AF6037-0C4F-4960-9AD8-75C5EE34CA6F.png"></p>
+<p>##2.3. Devices</p>
+<blockquote>
+<ol>
+<li>Device是指运行iOS系统用于开发调试App的设备（即苹果设备）。每台Apple设备使用UDID来唯一标识。</li>
+<li>设备的UDID可通过iTunes-&gt;Summary或者Xcode-&gt;Window-&gt;Devices获取。</li>
+<li>开发描述文件（Provisioning Profiles）必须绑定设备，所以在申请开发描述文件之前，必须要添加调试的设备（已添加可跳过）。</li>
+</ol>
+</blockquote>
+<p>###2.3.1.添加调试设备</p>
+<ul>
+<li>进入iOS Dev Center，“Devices”下选择“All”,可查看所有已添加的设备，点击右上角“＋”添加新的调试设备</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-802cf5bee44c638d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="9A9CA0B2-F320-4F9F-B51A-B0C250FECC63.png"></p>
+<ul>
+<li>输入“Name”和UDID（可在xcode或者iTunes中查看）后，继续</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-97d86f7d186c05f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ADF3D2DB-09B6-42D2-899B-D92D0E6163B5.png"></p>
+<ul>
+<li>确认信息后，点击注册，完成添加。</li>
+</ul>
+<p>##2.3. Provisioning Profiles</p>
+<p>###2.3.1 概念<br>Provisioning Profile文件包含了上述所有内容：<strong>证书</strong>，<strong>App ID</strong>，<strong>设备</strong>，后缀名为.mobileprovision。</p>
+<blockquote>
+<ol>
+<li>一个Provisioning Profile对应一个Explicit App ID或Wildcard App ID。</li>
+<li>Provisioning Profile决定Xcode用哪个证书（公钥）/私钥组合（Key Pair/Signing Identity）来签名应用程序（Signing Product）,将在应用程序打包时嵌入到.ipa包里。</li>
+<li>Provisioning Profile把这些信息全部打包在一起，方便我们在调试和发布程序打包时使用。这样，只要在不同的情况下选择不同的Provisioning Profile文件就可以了。</li>
+<li>Provisioning Profile也分为Development和Distribution两类，有效期同Certificate一样。Development版本的ProvisioningProfile用于开发调试，Distribution版本的ProvisioningProfile主要用于提交App Store审核，其不指定开发测试的Devices。</li>
+<li>xcode开发时，需在XcodeTarget-&gt;Build Settings-&gt;Code Signing-&gt;Provisioning Profile下配置对应的描述文件（Provisioning Profiles），然后在Code Signing Identity下拉可选择Identities from Profile “…”（即Provisioning Profile中包含的Certificates）。</li>
+<li>在XcodeTarget-&gt;Build Settings-&gt;Code Signing-&gt;Provisioning Profile可选择“Automatic”，xcode会根据该Target的“Bundle identifier”选择默认的配置文件及证书。</li>
+</ol>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-8f31e4bfd5eb2a88.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="3DAD606D-8BDC-4A7E-8644-5A7CF27DF3B4.png"></p>
+<p>###2.3.2. 创建配置文件</p>
+<ul>
+<li>打开iOS Dev Center，“Provisioning Profiles”-&gt;“All”,点击右上角“＋”（也可直接点击“Development”或“Production”）</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-2a813179f8208773.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="AC661BDE-DE94-487E-9A71-4C436224CB5D.png"></p>
+<ul>
+<li>选择开发或发布证书配置文件，这里以开发为例，点击iOS App Development，继续</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-ad44e5465b913cdd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="0AB45E72-821D-4F5C-84F8-CA19E97CC565.png"></p>
+<ul>
+<li>选择对应的App ID，继续</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-c79c2d260db2d681.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="F0C2D519-CA90-4286-A0AB-3A42DB4EADA0.png"></p>
+<ul>
+<li>选择要关联的证书，可多选，继续</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-5206a01d9e240e4d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="50725524-699D-400B-B1C0-3C5024774F95.png"></p>
+<ul>
+<li>选择用于调试安装的设备(最多100台设备)，<strong>如果是生产证书配置文件，则不会出现该页面（生产证书用于发布，不能进行开发调试）</strong>，继续看到以下界面</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-df8253c97b22d162.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="3FD54433-014F-4861-803F-994FFACCC910.png"></p>
+<ul>
+<li>输入文件名后，点击“Generate”，配置文件创建成功</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-dbe354eee3519cea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="56C9B53B-666E-4173-8083-D1857EB58CD4.png"></p>
+<ul>
+<li>可点击“Download”进行下载，或者在“Provisioning Profiles”-&gt;“All”查看所有配置文件，并进行下载或删除等操作。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-d38e19f0b14ba6f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="6F158A64-B819-476F-86EC-A4BA6EF1E3D2.png"></p>
+<ul>
+<li>如图下载到本地的Provisioning Profile，双击自动安装到xcode中，在XcodeTarget-&gt;Build Settings-&gt;Code Signing-&gt;Provisioning Profile中可看到此项。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-aa4e3036ae1f439a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="F5A42FB8-44EB-4A5C-B53C-3F3499CF883D.png"></p>
+<ul>
+<li>如图，选择此项配置文件，“Code Signing Identity”中会默认显示所关联的证书文件（即创建该配置文件时选择关联的证书，可有多个）</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-ee12b16ca2f1b477.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="3E6BFDF4-28E2-49DF-A31E-0FF507A1604F.png"></p>
+<ul>
+<li>生产证书配置文件与之类似，不再赘述。</li>
+</ul>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/22/浅谈iOS打包方式及流程/" rel="next" title="浅谈iOS打包方式及流程">
+                <i class="fa fa-chevron-left"></i> 浅谈iOS打包方式及流程
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/12/22/iOS开发证书与配置文件的使用/"
+           data-title="iOS开发证书与配置文件的使用" data-url="http://yoursite.com/2015/12/22/iOS开发证书与配置文件的使用/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.png" alt="gdsgtcz" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">gdsgtcz</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">马不停蹄地错过</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/gdsgtcz/" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/d5cac397c5e2/latest_articles" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 简书
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gdsgtcz</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"guodi"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      //if (CONFIG.sidebar === 'post') {
+      //  if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+      //    displaySidebar();
+      //  }
+      //}
+      displaySidebar();
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
