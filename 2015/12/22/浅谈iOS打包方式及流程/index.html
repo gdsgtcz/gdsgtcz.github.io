@@ -138,7 +138,7 @@
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta custom-logo">
+      <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
@@ -788,12 +788,12 @@
 
     // Expand sidebar on post detail page by default, when post has a toc.
     motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
-      }
+      //var $tocContent = $('.post-toc-content');
+      //if (CONFIG.sidebar === 'post') {
+      //  if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+      //    displaySidebar();
+      //  }
+      //}
     };
   });
 </script>
