@@ -52,13 +52,15 @@
 
 
 <meta name="description" content="引言
-在xcode下使用cocos2d-x+Lua开发游戏项目的过程中，我们只是把cocos2d-x作为一种工具在使用，而作为cocos2d-x引擎本身，我们基本不会修改底层（或者说是很少修改），那么问题来了，如果我们需要重编译或者archive打包的时候，编译cocos的库将会占据大部分的时间，基于这种情况，如果我们把cocos（或者一些不会修改的依赖项目）编辑成一个静态库的话，势必会节省很多不">
+
+在xcode下使用cocos2d-x+Lua开发游戏项目的过程中，我们只是把cocos2d-x作为一种工具在使用，而作为cocos2d-x引擎本身，我们基本不会修改底层（或者说是很少修改），那么问题来了，如果我们需要重编译或者archive打包的时候，编译cocos的库将会占据大部分的时间，基于这种情况，如果我们把cocos（或者一些不会修改的依赖项目）编辑成一个静态库的话，势必会节省很多">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cocos2d-x在xcode下开发生成静态库添加到项目">
 <meta property="og:url" content="http://yoursite.com/2015/12/22/Cocos2d-x在xcode下开发生成静态库添加到项目/index.html">
 <meta property="og:site_name" content="明天不用上课">
 <meta property="og:description" content="引言
-在xcode下使用cocos2d-x+Lua开发游戏项目的过程中，我们只是把cocos2d-x作为一种工具在使用，而作为cocos2d-x引擎本身，我们基本不会修改底层（或者说是很少修改），那么问题来了，如果我们需要重编译或者archive打包的时候，编译cocos的库将会占据大部分的时间，基于这种情况，如果我们把cocos（或者一些不会修改的依赖项目）编辑成一个静态库的话，势必会节省很多不">
+
+在xcode下使用cocos2d-x+Lua开发游戏项目的过程中，我们只是把cocos2d-x作为一种工具在使用，而作为cocos2d-x引擎本身，我们基本不会修改底层（或者说是很少修改），那么问题来了，如果我们需要重编译或者archive打包的时候，编译cocos的库将会占据大部分的时间，基于这种情况，如果我们把cocos（或者一些不会修改的依赖项目）编辑成一个静态库的话，势必会节省很多">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-3eb8c5dd5121b2fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-cc867714ab5c327a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-0009bfca342ce2c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -66,11 +68,12 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-a7e731a3908c8e9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-5b48e1dd6545534f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-2724cb59e1f9e6cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2015-12-22T12:20:20.000Z">
+<meta property="og:updated_time" content="2015-12-22T12:22:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocos2d-x在xcode下开发生成静态库添加到项目">
 <meta name="twitter:description" content="引言
-在xcode下使用cocos2d-x+Lua开发游戏项目的过程中，我们只是把cocos2d-x作为一种工具在使用，而作为cocos2d-x引擎本身，我们基本不会修改底层（或者说是很少修改），那么问题来了，如果我们需要重编译或者archive打包的时候，编译cocos的库将会占据大部分的时间，基于这种情况，如果我们把cocos（或者一些不会修改的依赖项目）编辑成一个静态库的话，势必会节省很多不">
+
+在xcode下使用cocos2d-x+Lua开发游戏项目的过程中，我们只是把cocos2d-x作为一种工具在使用，而作为cocos2d-x引擎本身，我们基本不会修改底层（或者说是很少修改），那么问题来了，如果我们需要重编译或者archive打包的时候，编译cocos的库将会占据大部分的时间，基于这种情况，如果我们把cocos（或者一些不会修改的依赖项目）编辑成一个静态库的话，势必会节省很多">
 
 
 
@@ -294,7 +297,8 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="u5F15_u8A00"><a href="#u5F15_u8A00" class="headerlink" title="引言"></a>引言</h2><blockquote>
+        <span itemprop="articleBody"><p><strong><em>引言</em></strong></p>
+<blockquote>
 <p>在xcode下使用cocos2d-x+Lua开发游戏项目的过程中，我们只是把cocos2d-x作为一种工具在使用，而作为cocos2d-x引擎本身，我们基本不会修改底层（或者说是很少修改），那么问题来了，如果我们需要重编译或者archive打包的时候，编译cocos的库将会占据大部分的时间，基于这种情况，如果我们把cocos（或者一些不会修改的依赖项目）编辑成一个静态库的话，势必会节省很多不必要的编译时间。</p>
 </blockquote>
 <h1 id="u4F7F_u7528cocos2d-x_uFF0BLua_u5F00_u53D1_uFF0C_u4F1A_u7528_u5230_u54EA_u4E9B_u5E95_u5C42_u9879_u76EE_uFF08_u5E93_uFF09"><a href="#u4F7F_u7528cocos2d-x_uFF0BLua_u5F00_u53D1_uFF0C_u4F1A_u7528_u5230_u54EA_u4E9B_u5E95_u5C42_u9879_u76EE_uFF08_u5E93_uFF09" class="headerlink" title="使用cocos2d-x＋Lua开发，会用到哪些底层项目（库）"></a>使用cocos2d-x＋Lua开发，会用到哪些底层项目（库）</h1><p><img src="http://upload-images.jianshu.io/upload_images/1195707-3eb8c5dd5121b2fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="55EA7405-B045-4DD9-8252-DFBC26653C77.png"></p>
@@ -492,7 +496,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u5F15_u8A00"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#u4F7F_u7528cocos2d-x_uFF0BLua_u5F00_u53D1_uFF0C_u4F1A_u7528_u5230_u54EA_u4E9B_u5E95_u5C42_u9879_u76EE_uFF08_u5E93_uFF09"><span class="nav-number"></span> <span class="nav-text">使用cocos2d-x＋Lua开发，会用到哪些底层项目（库）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#u7F16_u8BD1_u9759_u6001_u5E93"><span class="nav-number"></span> <span class="nav-text">编译静态库</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#u4F7F_u7528cocos2d-x_uFF0BLua_u5F00_u53D1_uFF0C_u4F1A_u7528_u5230_u54EA_u4E9B_u5E95_u5C42_u9879_u76EE_uFF08_u5E93_uFF09"><span class="nav-number">1.</span> <span class="nav-text">使用cocos2d-x＋Lua开发，会用到哪些底层项目（库）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#u7F16_u8BD1_u9759_u6001_u5E93"><span class="nav-number">2.</span> <span class="nav-text">编译静态库</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
