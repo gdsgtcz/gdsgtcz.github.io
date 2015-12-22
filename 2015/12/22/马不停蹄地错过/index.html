@@ -51,31 +51,57 @@
 
 
 
-<meta name="description" content="一级
-asd
+<meta name="description" content="本文简单介绍下将iOS项目中生成的.app文件生成可以直接安装的.ipa文件的几种方式。
+#1.Apple推荐方式：Xcode的Archive功能
 
-二级
-as
-as">
+首先，拔掉所有连接的设备。
+然后，Xcode菜单栏-&amp;gt;Product-&amp;gt;Archive，此时项目会重新编译，耐心等待,编译完成会出现以下界面。
+
+
+
+如图点击“Export”进行导出，弹出以下界面。
+
+
+
+选择导出类型，一般选后两个。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="马不停蹄地错过">
 <meta property="og:url" content="http://yoursite.com/2015/12/22/马不停蹄地错过/index.html">
 <meta property="og:site_name" content="明天不用上课">
-<meta property="og:description" content="一级
-asd
+<meta property="og:description" content="本文简单介绍下将iOS项目中生成的.app文件生成可以直接安装的.ipa文件的几种方式。
+#1.Apple推荐方式：Xcode的Archive功能
 
-二级
-as
-as">
-<meta property="og:updated_time" content="2015-12-22T09:48:32.000Z">
+首先，拔掉所有连接的设备。
+然后，Xcode菜单栏-&amp;gt;Product-&amp;gt;Archive，此时项目会重新编译，耐心等待,编译完成会出现以下界面。
+
+
+
+如图点击“Export”进行导出，弹出以下界面。
+
+
+
+选择导出类型，一般选后两个。">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-9253e5257628581f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-eadd545c651f985a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-e2026b01b9e41e27.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-9b2adf4318d51473.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-93418cd8503ea905.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2015-12-22T09:50:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="马不停蹄地错过">
-<meta name="twitter:description" content="一级
-asd
+<meta name="twitter:description" content="本文简单介绍下将iOS项目中生成的.app文件生成可以直接安装的.ipa文件的几种方式。
+#1.Apple推荐方式：Xcode的Archive功能
 
-二级
-as
-as">
+首先，拔掉所有连接的设备。
+然后，Xcode菜单栏-&amp;gt;Product-&amp;gt;Archive，此时项目会重新编译，耐心等待,编译完成会出现以下界面。
+
+
+
+如图点击“Export”进行导出，弹出以下界面。
+
+
+
+选择导出类型，一般选后两个。">
 
 
 
@@ -299,15 +325,61 @@ as">
       
 
       
-        <span itemprop="articleBody"><h1 id="u4E00_u7EA7"><a href="#u4E00_u7EA7" class="headerlink" title="一级"></a>一级</h1><blockquote>
-<p>asd</p>
-</blockquote>
-<h2 id="u4E8C_u7EA7"><a href="#u4E8C_u7EA7" class="headerlink" title="二级"></a>二级</h2><ul>
-<li>as<ul>
-<li>as</li>
+        <span itemprop="articleBody"><p>本文简单介绍下将iOS项目中生成的.app文件生成可以直接安装的.ipa文件的几种方式。</p>
+<p>#1.Apple推荐方式：Xcode的Archive功能</p>
+<ul>
+<li>首先，拔掉所有连接的设备。</li>
+<li>然后，Xcode菜单栏-&gt;Product-&gt;Archive，此时项目会重新编译，耐心等待,编译完成会出现以下界面。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-9253e5257628581f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2D2621EA-72B0-499C-94C0-8F54E7A5D091.png"></p>
+<ul>
+<li>如图点击“Export”进行导出，弹出以下界面。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-eadd545c651f985a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="296783a3ae02742f8c8b91a029f7c378.jpg"></p>
+<ul>
+<li><p>选择导出类型，一般选后两个。</p>
+<ul>
+<li>Save for iOS App Store Deployment<br>保存到本地 准备上传App Store 或者在越狱的iOS设备上使用</li>
+<li>Save for Ad Hoc Deployment<br>保存到本地 准备在账号添加的可使用设备上使用（具体为在开发者账户下添加可用设备的uidi）</li>
+<li><p>Save fro Enterprise Deployment<br>这种主要针对企业级账户下 准备本地服务器分发的app</p>
+<ul>
+<li>选择这种方式时，需要提供发布证书，如图，选择相应证书</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-e2026b01b9e41e27.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="CA37F30E-41BE-4A51-8E03-86C8BF4B89EA.png"></p>
+<ul>
+<li>导出到相应界面</li>
 </ul>
 </li>
 </ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-9b2adf4318d51473.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="65524A09-0E45-483B-AB80-AA1B0E3C927A.png"></p>
+</li>
+</ul>
+<p>#2.通过iTunes<br>这种方式十分简单，通过把编译后的.app文件拖入iTunes，生成.ipa文件。</p>
+<ul>
+<li>拔掉所有联机的设备，选择target-&gt;”iOS Device” 方式进行编译。</li>
+<li>编译成功，搜索appName.app所在位置(appName为你的应用名称)。</li>
+<li>打开iTunes，选择”应用程序”,将生成的.app文件拖入，如果已经存在该应用，先删除。</li>
+<li>拖出该应用，即生成.ipa文件</li>
+</ul>
+<p>#3.直接压缩改后缀名<br>简单暴力，可以手动压缩改后缀名，也可通过脚本实现。下面分别介绍：<br><strong>1.手动压缩后改后缀名</strong></p>
+<ul>
+<li>拔掉设备，Xcode编译生成.app文件</li>
+<li>新建“Payload”文件夹，注意名字要一字不差</li>
+<li>将.app包放到Payload目录下，注意app的名字不做任何更改</li>
+<li>Payload文件夹压缩成.zip包，并修改后缀名为.ipa</li>
+</ul>
+<p><strong>2.使用脚本自动生成</strong></p>
+<ul>
+<li>创建“distribute”文件夹</li>
+<li>将Xcode编译生成的.app文件拷贝到该目录下</li>
+<li><p>该目录下创建“distribute.sh”脚本文件，内容如下(appName为你.app名字)：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">rm -rf APP</span><br><span class="line">mkdir APP</span><br><span class="line">mkdir APP/Payload</span><br><span class="line">cp -r appName.app APP/Payload/appName.app</span><br><span class="line"><span class="built_in">cd</span> APP</span><br><span class="line">zip -r appName.ipa Payload</span><br><span class="line"><span class="built_in">exit</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打来Terminal，cd到distribute文件夹下，执行distribute.sh脚本，如果权限不够，则执行“chmod 777 distribute.sh”添加权限。</p>
+</li>
+<li>若干秒后执行完毕，生成“APP”文件夹，APP目录下的.ipa就是我们要的包。如图：</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-93418cd8503ea905.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="FEE7AE77-0B62-49B3-9157-CBFA84E8A341.png"></p>
 </span>
       
     </div>
@@ -447,7 +519,7 @@ as">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#u4E00_u7EA7"><span class="nav-number">1.</span> <span class="nav-text">一级</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#u4E8C_u7EA7"><span class="nav-number">1.1.</span> <span class="nav-text">二级</span></a></li></ol></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
