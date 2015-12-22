@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS," />
+  <meta name="keywords" content="Cocos2d-x iOS," />
 
 
 
@@ -51,60 +51,26 @@
 
 
 
-<meta name="description" content="本文简单介绍下将iOS项目中生成的.app文件生成可以直接安装的.ipa文件的几种方式。
-Apple推荐方式：Xcode的Archive功能
-首先，拔掉所有连接的设备。
-然后，Xcode菜单栏-&amp;gt;Product-&amp;gt;Archive，此时项目会重新编译，耐心等待,编译完成会出现以下界面。
-
-
-
-如图点击“Export”进行导出，弹出以下界面。
-
-
-
-选择导出类型，一般选后两个。
-
-Save">
+<meta name="description" content="引言
+在xcode下使用cocos2d-x+Lua开发游戏项目的过程中，我们只是把cocos2d-x作为一种工具在使用，而作为cocos2d-x引擎本身，我们基本不会修改底层（或者说是很少修改），那么问题来了，如果我们需要重编译或者archive打包的时候，编译cocos的库将会占据大部分的时间，基于这种情况，如果我们把cocos（或者一些不会修改的依赖项目）编辑成一个静态库的话，势必会节省很多不">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅谈iOS打包方式及流程">
-<meta property="og:url" content="http://yoursite.com/2015/12/22/浅谈iOS打包方式及流程/index.html">
+<meta property="og:title" content="Cocos2d-x在xcode下开发生成静态库添加到项目">
+<meta property="og:url" content="http://yoursite.com/2015/12/22/Cocos2d-x在xcode下开发生成静态库添加到项目/index.html">
 <meta property="og:site_name" content="明天不用上课">
-<meta property="og:description" content="本文简单介绍下将iOS项目中生成的.app文件生成可以直接安装的.ipa文件的几种方式。
-Apple推荐方式：Xcode的Archive功能
-首先，拔掉所有连接的设备。
-然后，Xcode菜单栏-&amp;gt;Product-&amp;gt;Archive，此时项目会重新编译，耐心等待,编译完成会出现以下界面。
-
-
-
-如图点击“Export”进行导出，弹出以下界面。
-
-
-
-选择导出类型，一般选后两个。
-
-Save">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-9253e5257628581f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-eadd545c651f985a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-e2026b01b9e41e27.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-9b2adf4318d51473.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-93418cd8503ea905.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2015-12-22T10:19:27.000Z">
+<meta property="og:description" content="引言
+在xcode下使用cocos2d-x+Lua开发游戏项目的过程中，我们只是把cocos2d-x作为一种工具在使用，而作为cocos2d-x引擎本身，我们基本不会修改底层（或者说是很少修改），那么问题来了，如果我们需要重编译或者archive打包的时候，编译cocos的库将会占据大部分的时间，基于这种情况，如果我们把cocos（或者一些不会修改的依赖项目）编辑成一个静态库的话，势必会节省很多不">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-3eb8c5dd5121b2fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-cc867714ab5c327a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-0009bfca342ce2c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-b17549eac35ac0c7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-a7e731a3908c8e9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-5b48e1dd6545534f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-2724cb59e1f9e6cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2015-12-22T12:20:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浅谈iOS打包方式及流程">
-<meta name="twitter:description" content="本文简单介绍下将iOS项目中生成的.app文件生成可以直接安装的.ipa文件的几种方式。
-Apple推荐方式：Xcode的Archive功能
-首先，拔掉所有连接的设备。
-然后，Xcode菜单栏-&amp;gt;Product-&amp;gt;Archive，此时项目会重新编译，耐心等待,编译完成会出现以下界面。
-
-
-
-如图点击“Export”进行导出，弹出以下界面。
-
-
-
-选择导出类型，一般选后两个。
-
-Save">
+<meta name="twitter:title" content="Cocos2d-x在xcode下开发生成静态库添加到项目">
+<meta name="twitter:description" content="引言
+在xcode下使用cocos2d-x+Lua开发游戏项目的过程中，我们只是把cocos2d-x作为一种工具在使用，而作为cocos2d-x引擎本身，我们基本不会修改底层（或者说是很少修改），那么问题来了，如果我们需要重编译或者archive打包的时候，编译cocos的库将会占据大部分的时间，基于这种情况，如果我们把cocos（或者一些不会修改的依赖项目）编辑成一个静态库的话，势必会节省很多不">
 
 
 
@@ -116,7 +82,7 @@ Save">
   };
 </script>
 
-  <title> 浅谈iOS打包方式及流程 | 明天不用上课 </title>
+  <title> Cocos2d-x在xcode下开发生成静态库添加到项目 | 明天不用上课 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -267,7 +233,7 @@ Save">
             
             
               
-                浅谈iOS打包方式及流程
+                Cocos2d-x在xcode下开发生成静态库添加到项目
               
             
           </h1>
@@ -276,7 +242,7 @@ Save">
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-22T17:56:38+08:00" content="2015-12-22">
+            <time itemprop="dateCreated" datetime="2015-12-22T20:18:57+08:00" content="2015-12-22">
               2015-12-22
             </time>
           </span>
@@ -286,8 +252,8 @@ Save">
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发</span>
+                  <a href="/categories/Cocos2d-x/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocos2d-x</span>
                   </a>
                 </span>
 
@@ -302,8 +268,8 @@ Save">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/22/浅谈iOS打包方式及流程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/22/浅谈iOS打包方式及流程/" itemprop="commentsCount"></span>
+                <a href="/2015/12/22/Cocos2d-x在xcode下开发生成静态库添加到项目/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/22/Cocos2d-x在xcode下开发生成静态库添加到项目/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -328,60 +294,45 @@ Save">
       
 
       
-        <span itemprop="articleBody"><p>本文简单介绍下将iOS项目中生成的.app文件生成可以直接安装的.ipa文件的几种方式。</p>
-<h1 id="Apple_u63A8_u8350_u65B9_u5F0F_uFF1AXcode_u7684Archive_u529F_u80FD"><a href="#Apple_u63A8_u8350_u65B9_u5F0F_uFF1AXcode_u7684Archive_u529F_u80FD" class="headerlink" title="Apple推荐方式：Xcode的Archive功能"></a>Apple推荐方式：Xcode的Archive功能</h1><ul>
-<li>首先，拔掉所有连接的设备。</li>
-<li>然后，Xcode菜单栏-&gt;Product-&gt;Archive，此时项目会重新编译，耐心等待,编译完成会出现以下界面。</li>
+        <span itemprop="articleBody"><h2 id="u5F15_u8A00"><a href="#u5F15_u8A00" class="headerlink" title="引言"></a>引言</h2><blockquote>
+<p>在xcode下使用cocos2d-x+Lua开发游戏项目的过程中，我们只是把cocos2d-x作为一种工具在使用，而作为cocos2d-x引擎本身，我们基本不会修改底层（或者说是很少修改），那么问题来了，如果我们需要重编译或者archive打包的时候，编译cocos的库将会占据大部分的时间，基于这种情况，如果我们把cocos（或者一些不会修改的依赖项目）编辑成一个静态库的话，势必会节省很多不必要的编译时间。</p>
+</blockquote>
+<h1 id="u4F7F_u7528cocos2d-x_uFF0BLua_u5F00_u53D1_uFF0C_u4F1A_u7528_u5230_u54EA_u4E9B_u5E95_u5C42_u9879_u76EE_uFF08_u5E93_uFF09"><a href="#u4F7F_u7528cocos2d-x_uFF0BLua_u5F00_u53D1_uFF0C_u4F1A_u7528_u5230_u54EA_u4E9B_u5E95_u5C42_u9879_u76EE_uFF08_u5E93_uFF09" class="headerlink" title="使用cocos2d-x＋Lua开发，会用到哪些底层项目（库）"></a>使用cocos2d-x＋Lua开发，会用到哪些底层项目（库）</h1><p><img src="http://upload-images.jianshu.io/upload_images/1195707-3eb8c5dd5121b2fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="55EA7405-B045-4DD9-8252-DFBC26653C77.png"></p>
+<ul>
+<li>cocos2d-x项目<br>cocos源码项目，工程文件是位于 cocos2d-x/build下的cocos2d_libs.xcodeproj文件。</li>
 </ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/1195707-9253e5257628581f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2D2621EA-72B0-499C-94C0-8F54E7A5D091.png"></p>
 <ul>
-<li>如图点击“Export”进行导出，弹出以下界面。</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/1195707-eadd545c651f985a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="296783a3ae02742f8c8b91a029f7c378.jpg"></p>
-<ul>
-<li><p>选择导出类型，一般选后两个。</p>
-<ul>
-<li>Save for iOS App Store Deployment<br>保存到本地 准备上传App Store 或者在越狱的iOS设备上使用</li>
-<li>Save for Ad Hoc Deployment<br>保存到本地 准备在账号添加的可使用设备上使用（具体为在开发者账户下添加可用设备的uidi）</li>
-<li><p>Save fro Enterprise Deployment<br>这种主要针对企业级账户下 准备本地服务器分发的app</p>
-<ul>
-<li>选择这种方式时，需要提供发布证书，如图，选择相应证书</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/1195707-e2026b01b9e41e27.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="CA37F30E-41BE-4A51-8E03-86C8BF4B89EA.png"></p>
-<ul>
-<li>导出到相应界面</li>
-</ul>
+<li><p>cocos2d_lua_bindings项目<br>cocos2d_lua_bindings作为cocos的绑定项目，只是把cocos的底层功能绑定到lua使用，如果cocos底层不需要修改的话，那么lua-cocos2d-x也是可以打成静态库加到项目中使用的。工程文件是位于cocos2d-x/cocos/scripting/lua-bindings/proj.ios_mac下的cocos2d_lua_bindings.xcodeproj文件。<br>注：如果只是使用cocos2d-x开发而不是使用cocos2d-x+Lua的话，则不会有cocos2d_lua_bindings这个项目。</p>
+</li>
+<li><p>simulator项目<br>simulator是适用于模拟器的项目，我们完全可以把它对应的iOS和Mac的target打成静态库，以对应不同平台。文件是位于cocos2d-x/tools/simulator/libsimulator/proj.ios_mac下的libsimulator.xcodeproj文件。<br><strong>所以，在使用cocos2d-x开发中，我们可以把cocos2d-x、lua-cocos2dx、simulator项目编译成静态库文件使用</strong></p>
+<h1 id="u7F16_u8BD1_u9759_u6001_u5E93"><a href="#u7F16_u8BD1_u9759_u6001_u5E93" class="headerlink" title="编译静态库"></a>编译静态库</h1></li>
+<li><p>以cocos2d-x项目为例，Delete项目下的cocos项目，打开 cocos2d-x/build/cocos2d_libs.xcodeproj工程，选择相应的target。<br>如图，在1处选择targets为iOS或者Mac，在2处选择为release或者debug版本。<br><img src="http://upload-images.jianshu.io/upload_images/1195707-cc867714ab5c327a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="4FB6CD1E-E18E-4C9C-82D9-2D6D4FA39F6B.png"></p>
 </li>
 </ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/1195707-9b2adf4318d51473.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="65524A09-0E45-483B-AB80-AA1B0E3C927A.png"></p>
-</li>
-</ul>
-<h1 id="u901A_u8FC7iTunes"><a href="#u901A_u8FC7iTunes" class="headerlink" title="通过iTunes"></a>通过iTunes</h1><p>这种方式十分简单，通过把编译后的.app文件拖入iTunes，生成.ipa文件。</p>
 <ul>
-<li>拔掉所有联机的设备，选择target-&gt;”iOS Device” 方式进行编译。</li>
-<li>编译成功，搜索appName.app所在位置(appName为你的应用名称)。</li>
-<li>打开iTunes，选择”应用程序”,将生成的.app文件拖入，如果已经存在该应用，先删除。</li>
-<li>拖出该应用，即生成.ipa文件</li>
+<li>编译该工程，编译成功后，在Products显示编译成功的静态库，右击查看生成在本地的静态库。</li>
 </ul>
-<h1 id="u76F4_u63A5_u538B_u7F29_u6539_u540E_u7F00_u540D"><a href="#u76F4_u63A5_u538B_u7F29_u6539_u540E_u7F00_u540D" class="headerlink" title="直接压缩改后缀名"></a>直接压缩改后缀名</h1><p>简单暴力，可以手动压缩改后缀名，也可通过脚本实现。下面分别介绍：<br><strong>1.手动压缩后改后缀名</strong></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-0009bfca342ce2c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="F7182C01-EB6A-4717-8160-E19A6D992FC8.png"></p>
 <ul>
-<li>拔掉设备，Xcode编译生成.app文件</li>
-<li>新建“Payload”文件夹，注意名字要一字不差</li>
-<li>将.app包放到Payload目录下，注意app的名字不做任何更改</li>
-<li>Payload文件夹压缩成.zip包，并修改后缀名为.ipa</li>
+<li>如图，是生成的各个版本的静态库。</li>
 </ul>
-<p><strong>2.使用脚本自动生成</strong></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-b17549eac35ac0c7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="48FBD211-2E2B-4670-A979-01C3EC93C7EB.png"></p>
 <ul>
-<li>创建“distribute”文件夹</li>
-<li>将Xcode编译生成的.app文件拷贝到该目录下</li>
-<li><p>该目录下创建“distribute.sh”脚本文件，内容如下(appName为你.app名字)：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">rm -rf APP</span><br><span class="line">mkdir APP</span><br><span class="line">mkdir APP/Payload</span><br><span class="line">cp -r appName.app APP/Payload/appName.app</span><br><span class="line"><span class="built_in">cd</span> APP</span><br><span class="line">zip -r appName.ipa Payload</span><br><span class="line"><span class="built_in">exit</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>打来Terminal，cd到distribute文件夹下，执行distribute.sh脚本，如果权限不够，则执行“chmod 777 distribute.sh”添加权限。</p>
-</li>
-<li>若干秒后执行完毕，生成“APP”文件夹，APP目录下的.ipa就是我们要的包。如图：</li>
+<li>可以通过命令：“lipo -info XXX.a”可以查看静态库的适用环境。</li>
 </ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/1195707-93418cd8503ea905.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="FEE7AE77-0B62-49B3-9157-CBFA84E8A341.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-a7e731a3908c8e9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="F2C4F370-4A9B-4E00-8CF4-86476444062A.png"></p>
+<ul>
+<li>将.a静态库文件放在项目路径下（建议新建目录）。</li>
+<li>打开xcode，选择targets，选择Build Phases下的Link Binary With Libraries，点击左下角的“＋”后选择“Add Other…”，选择加到项目路径下的.a文件。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-5b48e1dd6545534f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="136A5798-56C1-4F37-9EA9-97DFAE08F4FA.png"></p>
+<ul>
+<li>如图，添加成功。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1195707-2724cb59e1f9e6cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="F2F45CD1-97DB-4358-A6CA-0B92E2E560A0.png"></p>
+<ul>
+<li>cocos2d_lua_binding项目和libsimulator项目编译生成静态库并加入到项目流程类似，不再赘述。<br><strong>注：为了通用起见可以将几个.a库进行合并，这样生成的静态库既可以在模拟器下运行，也可以在真机下运行，合并的命令类似于：lipo -create ./Debug-iphonesimulator/libCocosDenshion\ iOS.a  ./Debug-iphoneos/libCocosDenshion\ iOS.a  -output $OUTPUTDIR_PATH/libCocosDenshion\ iOS.a</strong></li>
+</ul>
 </span>
       
     </div>
@@ -390,7 +341,7 @@ Save">
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
+            <a href="/tags/Cocos2d-x-iOS/" rel="tag">#Cocos2d-x iOS</a>
           
         </div>
       
@@ -399,13 +350,13 @@ Save">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2015/12/22/iOS开发证书与配置文件的使用/" rel="next" title="iOS开发证书与配置文件的使用">
+                <i class="fa fa-chevron-left"></i> iOS开发证书与配置文件的使用
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/22/iOS开发证书与配置文件的使用/" rel="prev" title="iOS开发证书与配置文件的使用">
-                iOS开发证书与配置文件的使用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -432,8 +383,8 @@ Save">
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/12/22/浅谈iOS打包方式及流程/"
-           data-title="浅谈iOS打包方式及流程" data-url="http://yoursite.com/2015/12/22/浅谈iOS打包方式及流程/">
+      <div class="ds-thread" data-thread-key="2015/12/22/Cocos2d-x在xcode下开发生成静态库添加到项目/"
+           data-title="Cocos2d-x在xcode下开发生成静态库添加到项目" data-url="http://yoursite.com/2015/12/22/Cocos2d-x在xcode下开发生成静态库添加到项目/">
       </div>
     
   </div>
@@ -541,7 +492,7 @@ Save">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Apple_u63A8_u8350_u65B9_u5F0F_uFF1AXcode_u7684Archive_u529F_u80FD"><span class="nav-number">1.</span> <span class="nav-text">Apple推荐方式：Xcode的Archive功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#u901A_u8FC7iTunes"><span class="nav-number">2.</span> <span class="nav-text">通过iTunes</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#u76F4_u63A5_u538B_u7F29_u6539_u540E_u7F00_u540D"><span class="nav-number">3.</span> <span class="nav-text">直接压缩改后缀名</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u5F15_u8A00"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#u4F7F_u7528cocos2d-x_uFF0BLua_u5F00_u53D1_uFF0C_u4F1A_u7528_u5230_u54EA_u4E9B_u5E95_u5C42_u9879_u76EE_uFF08_u5E93_uFF09"><span class="nav-number"></span> <span class="nav-text">使用cocos2d-x＋Lua开发，会用到哪些底层项目（库）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#u7F16_u8BD1_u9759_u6001_u5E93"><span class="nav-number"></span> <span class="nav-text">编译静态库</span></a></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
