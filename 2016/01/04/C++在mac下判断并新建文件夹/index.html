@@ -54,32 +54,23 @@
 
 
 <meta name="description" content="首先，需要包含头文件
-
 12#include &amp;lt;stdarg.h&amp;gt;#include &amp;lt;sys/stat.h&amp;gt;
-
 函数实现判断是否存在文件路径，不存在则创建
-
 12345678910111213void createDir(std::string path)&amp;#123;    FILE *fp = NULL;    fp = fopen(path.c_str(), &quot;w&quot;);">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++在mac下判断并新建文件夹">
 <meta property="og:url" content="http://gdsgtcz.github.io/2016/01/04/C++在mac下判断并新建文件夹/index.html">
 <meta property="og:site_name" content="明天不用上课">
 <meta property="og:description" content="首先，需要包含头文件
-
 12#include &amp;lt;stdarg.h&amp;gt;#include &amp;lt;sys/stat.h&amp;gt;
-
 函数实现判断是否存在文件路径，不存在则创建
-
 12345678910111213void createDir(std::string path)&amp;#123;    FILE *fp = NULL;    fp = fopen(path.c_str(), &quot;w&quot;);">
-<meta property="og:updated_time" content="2016-01-04T08:56:36.000Z">
+<meta property="og:updated_time" content="2016-01-04T08:58:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++在mac下判断并新建文件夹">
 <meta name="twitter:description" content="首先，需要包含头文件
-
 12#include &amp;lt;stdarg.h&amp;gt;#include &amp;lt;sys/stat.h&amp;gt;
-
 函数实现判断是否存在文件路径，不存在则创建
-
 12345678910111213void createDir(std::string path)&amp;#123;    FILE *fp = NULL;    fp = fopen(path.c_str(), &quot;w&quot;);">
 
 
@@ -304,13 +295,9 @@
       
 
       
-        <span itemprop="articleBody"><ul>
-<li>首先，需要包含头文件</li>
-</ul>
+        <span itemprop="articleBody"><p><strong><em>首先，需要包含头文件</em></strong></p>
 <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stdarg.h&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;sys/stat.h&gt;</span></span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>函数实现<br>判断是否存在文件路径，不存在则创建</li>
-</ul>
+<p><strong><em>函数实现</em></strong><br>判断是否存在文件路径，不存在则创建</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createDir</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span> path)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    FILE *fp = <span class="literal">NULL</span>;</span><br><span class="line">    fp = fopen(path.c_str(), <span class="string">"w"</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (!fp) &#123;</span><br><span class="line">        mkdir(path.c_str(), <span class="number">0775</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        fclose(fp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>其中，path是“/”结尾的文件夹路径，可通过以下方法获取mac下的home路径<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span>* homeDir = getenv (<span class="string">"HOME"</span>);</span><br></pre></td></tr></table></figure></p>
 </span>
