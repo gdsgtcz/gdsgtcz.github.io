@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Lua Cocos2d-x," />
+  <meta name="keywords" content="C++," />
 
 
 
@@ -53,40 +53,28 @@
 
 
 
-<meta name="description" content="可以看一下我的Github项目,使用项目中的lua_zlib.h文件压缩lua字符串。
+<meta name="description" content="可以看一下我的Github项目,使用封装zlib库的ZLibString类进行压缩C++字符串。
 
 使用
-我使用的开发环境是cocos2d-x + lua开发,以我的项目为例，将lua_zlib.h文件加入项目中，在入口文件中包含该头文件并注册以便在lua中使用，注册如下：
-1luaL_requiref_(L, &quot;zlib&quot;, luaopen_zlib, 1);
-
-
-  然后lua中就可以使用如下：
-  1">
+将ZLibString.h,ZLibString.cpp文件加入项目，使用以下方法进行压缩，解压缩。
+  1234// 压缩，pcContentBuf:要压缩的内容 pcCompBuf:压缩后的内容 ulCompLen:得到压缩后的长度bool Compress(const char* pcC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lua中使用zlib库压缩字符串">
-<meta property="og:url" content="http://gdsgtcz.github.io/2016/01/06/Lua中使用zlib库压缩字符串/index.html">
+<meta property="og:title" content="C++封装zlib库压缩字符串">
+<meta property="og:url" content="http://gdsgtcz.github.io/2016/01/06/C++封装zlib库压缩字符串/index.html">
 <meta property="og:site_name" content="明天不用上课">
-<meta property="og:description" content="可以看一下我的Github项目,使用项目中的lua_zlib.h文件压缩lua字符串。
+<meta property="og:description" content="可以看一下我的Github项目,使用封装zlib库的ZLibString类进行压缩C++字符串。
 
 使用
-我使用的开发环境是cocos2d-x + lua开发,以我的项目为例，将lua_zlib.h文件加入项目中，在入口文件中包含该头文件并注册以便在lua中使用，注册如下：
-1luaL_requiref_(L, &quot;zlib&quot;, luaopen_zlib, 1);
-
-
-  然后lua中就可以使用如下：
-  1">
-<meta property="og:updated_time" content="2016-01-06T01:56:43.000Z">
+将ZLibString.h,ZLibString.cpp文件加入项目，使用以下方法进行压缩，解压缩。
+  1234// 压缩，pcContentBuf:要压缩的内容 pcCompBuf:压缩后的内容 ulCompLen:得到压缩后的长度bool Compress(const char* pcC">
+<meta property="og:updated_time" content="2016-01-06T01:59:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lua中使用zlib库压缩字符串">
-<meta name="twitter:description" content="可以看一下我的Github项目,使用项目中的lua_zlib.h文件压缩lua字符串。
+<meta name="twitter:title" content="C++封装zlib库压缩字符串">
+<meta name="twitter:description" content="可以看一下我的Github项目,使用封装zlib库的ZLibString类进行压缩C++字符串。
 
 使用
-我使用的开发环境是cocos2d-x + lua开发,以我的项目为例，将lua_zlib.h文件加入项目中，在入口文件中包含该头文件并注册以便在lua中使用，注册如下：
-1luaL_requiref_(L, &quot;zlib&quot;, luaopen_zlib, 1);
-
-
-  然后lua中就可以使用如下：
-  1">
+将ZLibString.h,ZLibString.cpp文件加入项目，使用以下方法进行压缩，解压缩。
+  1234// 压缩，pcContentBuf:要压缩的内容 pcCompBuf:压缩后的内容 ulCompLen:得到压缩后的长度bool Compress(const char* pcC">
 
 
 
@@ -98,7 +86,7 @@
   };
 </script>
 
-  <title> Lua中使用zlib库压缩字符串 | 明天不用上课 </title>
+  <title> C++封装zlib库压缩字符串 | 明天不用上课 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +237,7 @@
             
             
               
-                Lua中使用zlib库压缩字符串
+                C++封装zlib库压缩字符串
               
             
           </h1>
@@ -258,7 +246,7 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-01-06T09:52:59+08:00" content="2016-01-06">
+            <time itemprop="dateCreated" datetime="2016-01-06T09:58:15+08:00" content="2016-01-06">
               2016-01-06
             </time>
           </span>
@@ -268,8 +256,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Lua/" itemprop="url" rel="index">
-                    <span itemprop="name">Lua</span>
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
                   </a>
                 </span>
 
@@ -284,8 +272,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/06/Lua中使用zlib库压缩字符串/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/06/Lua中使用zlib库压缩字符串/" itemprop="commentsCount"></span>
+                <a href="/2016/01/06/C++封装zlib库压缩字符串/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/06/C++封装zlib库压缩字符串/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -310,16 +298,14 @@
       
 
       
-        <span itemprop="articleBody"><p>可以看一下我的<a href="https://github.com/gdsgtcz/Zlib-Lua-C" target="_blank" rel="external">Github项目</a>,使用项目中的lua_zlib.h文件压缩lua字符串。</p>
+        <span itemprop="articleBody"><p>可以看一下我的<a href="https://github.com/gdsgtcz/Zlib-Lua-C" target="_blank" rel="external">Github项目</a>,使用封装zlib库的ZLibString类进行压缩C++字符串。</p>
 <ul>
 <li><p>使用</p>
-<p>我使用的开发环境是cocos2d-x + lua开发,以我的项目为例，<br>将lua_zlib.h文件加入项目中，在入口文件中包含该头文件并注册以便在lua中使用，注册如下：</p>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">luaL_requiref_<span class="list">(<span class="keyword">L</span>, <span class="string">"zlib"</span>, luaopen_zlib, <span class="number">1</span>)</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>将ZLibString.h,ZLibString.cpp文件加入项目，使用以下方法进行压缩，解压缩。</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 压缩，pcContentBuf:要压缩的内容 pcCompBuf:压缩后的内容 ulCompLen:得到压缩后的长度</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Compress</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* pcContentBuf, <span class="keyword">char</span>* pcCompBuf, <span class="keyword">unsigned</span> <span class="keyword">long</span>&amp; ulCompLen)</span></span>;  </span><br><span class="line"><span class="comment">// 解压,pcCompBuf:压缩的内容, pcUnCompBuf:解压后的内容  ulCompLen:传入压缩内容的长度</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">UnCompress</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* pcCompBuf, <span class="keyword">char</span>* pcUnCompBuf, <span class="keyword">unsigned</span> <span class="keyword">long</span> ulCompLen)</span></span>;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>  然后lua中就可以使用如下：</p>
-  <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">local zip=<span class="function"><span class="title">require</span><span class="params">(<span class="string">"zlib"</span>)</span></span>     </span><br><span class="line">local v,mv,pv=zip.<span class="function"><span class="title">version</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(v .. <span class="string">"  "</span> .. mv .. <span class="string">"  "</span> .. pv)</span></span></span><br><span class="line">local compress=zip.<span class="function"><span class="title">deflate</span><span class="params">()</span></span></span><br><span class="line">local uncompress=zip.<span class="function"><span class="title">inflate</span><span class="params">()</span></span></span><br><span class="line"></span><br><span class="line">-- 压缩字符串</span><br><span class="line">local deflated, eof, bytes_in,bytes_out =<span class="function"><span class="title">compress</span><span class="params">(<span class="string">"asdasdasdasdasdasdasdasdasd"</span>, <span class="string">'finish'</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(deflated)</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(eof)</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(bytes_in)</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(bytes_out)</span></span></span><br><span class="line"></span><br><span class="line">-- 解压字符串</span><br><span class="line">local uss,ret,getin,getout=<span class="function"><span class="title">uncompress</span><span class="params">(deflated)</span></span>    </span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(uss)</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(ret)</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(getin)</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(getout)</span></span></span><br></pre></td></tr></table></figure>
-<p>  ‘finish’为压缩选项，有 “none”, “sync”, “full”, “finish”, NULL，几种类型。</p>
+<p> 具体见源码。</p>
 </span>
       
     </div>
@@ -328,7 +314,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Lua-Cocos2d-x/" rel="tag">#Lua Cocos2d-x</a>
+            <a href="/tags/C/" rel="tag">#C++</a>
           
         </div>
       
@@ -337,17 +323,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/04/C++在mac下判断并新建文件夹/" rel="next" title="C++在mac下判断并新建文件夹">
-                <i class="fa fa-chevron-left"></i> C++在mac下判断并新建文件夹
+              <a href="/2016/01/06/Lua中使用zlib库压缩字符串/" rel="next" title="Lua中使用zlib库压缩字符串">
+                <i class="fa fa-chevron-left"></i> Lua中使用zlib库压缩字符串
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/01/06/C++封装zlib库压缩字符串/" rel="prev" title="C++封装zlib库压缩字符串">
-                C++封装zlib库压缩字符串 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -374,8 +356,8 @@
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/01/06/Lua中使用zlib库压缩字符串/"
-           data-title="Lua中使用zlib库压缩字符串" data-url="http://gdsgtcz.github.io/2016/01/06/Lua中使用zlib库压缩字符串/">
+      <div class="ds-thread" data-thread-key="2016/01/06/C++封装zlib库压缩字符串/"
+           data-title="C++封装zlib库压缩字符串" data-url="http://gdsgtcz.github.io/2016/01/06/C++封装zlib库压缩字符串/">
       </div>
     
   </div>
