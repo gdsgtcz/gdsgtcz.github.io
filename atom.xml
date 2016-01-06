@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://gdsgtcz.github.io/"/>
-  <updated>2016-01-04T08:58:20.000Z</updated>
+  <updated>2016-01-06T01:53:54.000Z</updated>
   <id>http://gdsgtcz.github.io/</id>
   
   <author>
@@ -13,6 +13,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Lua中使用zlib库压缩字符串]]></title>
+    <link href="http://gdsgtcz.github.io/2016/01/06/Lua%E4%B8%AD%E4%BD%BF%E7%94%A8zlib%E5%BA%93%E5%8E%8B%E7%BC%A9%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    <id>http://gdsgtcz.github.io/2016/01/06/Lua中使用zlib库压缩字符串/</id>
+    <published>2016-01-06T01:52:59.000Z</published>
+    <updated>2016-01-06T01:53:54.000Z</updated>
+    <content type="html"><![CDATA[<p>可以看一下我的<a href="https://github.com/gdsgtcz/Zlib-Lua-C" target="_blank" rel="external">Github项目</a>,使用项目中的lua_zlib.h文件压缩lua字符串。</p>
+<ul>
+<li><p>使用</p>
+<p>我使用的开发环境是cocos2d-x + lua开发,以我的项目为例，<br>将lua_zlib.h文件加入项目中，在入口文件中包含该头文件并注册以便在lua中使用，注册如下：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">luaL_requiref_<span class="list">(<span class="keyword">L</span>, <span class="string">"zlib"</span>, luaopen_zlib, <span class="number">1</span>)</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>  然后lua中就可以使用如下：</p>
+  <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">local zip=<span class="function"><span class="title">require</span><span class="params">(<span class="string">"zlib"</span>)</span></span>     </span><br><span class="line">local v,mv,pv=zip.<span class="function"><span class="title">version</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(v .. <span class="string">"  "</span> .. mv .. <span class="string">"  "</span> .. pv)</span></span></span><br><span class="line">local compress=zip.<span class="function"><span class="title">deflate</span><span class="params">()</span></span></span><br><span class="line">local uncompress=zip.<span class="function"><span class="title">inflate</span><span class="params">()</span></span></span><br><span class="line"></span><br><span class="line">-- 压缩字符串</span><br><span class="line">local deflated, eof, bytes_in,bytes_out =<span class="function"><span class="title">compress</span><span class="params">(<span class="string">"asdasdasdasdasdasdasdasdasd"</span>, <span class="string">'finish'</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(deflated)</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(eof)</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(bytes_in)</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(bytes_out)</span></span></span><br><span class="line"></span><br><span class="line">-- 解压字符串</span><br><span class="line">local uss,ret,getin,getout=<span class="function"><span class="title">uncompress</span><span class="params">(deflated)</span></span>    </span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(uss)</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(ret)</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(getin)</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(getout)</span></span></span><br></pre></td></tr></table></figure>
+<p>  ‘finish’为压缩选项，有 “none”, “sync”, “full”, “finish”, NULL，几种类型。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>可以看一下我的<a href="https://github.com/gdsgtcz/Zlib-Lua-C" target="_blank" rel="external">Github项目</a>,使用项目中的lua_zlib.h文件压缩lua字符串。</p>
+<ul>
+<]]>
+    </summary>
+    
+      <category term="Lua Cocos2d-x" scheme="http://gdsgtcz.github.io/tags/Lua-Cocos2d-x/"/>
+    
+      <category term="Lua" scheme="http://gdsgtcz.github.io/categories/Lua/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[C++在mac下判断并新建文件夹]]></title>
