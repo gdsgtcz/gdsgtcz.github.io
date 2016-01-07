@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://gdsgtcz.github.io/"/>
-  <updated>2016-01-07T06:59:18.000Z</updated>
+  <updated>2016-01-07T10:20:35.000Z</updated>
   <id>http://gdsgtcz.github.io/</id>
   
   <author>
@@ -13,6 +13,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[C++获取当前系统时间]]></title>
+    <link href="http://gdsgtcz.github.io/2016/01/07/C-%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4/"/>
+    <id>http://gdsgtcz.github.io/2016/01/07/C-获取当前系统时间/</id>
+    <published>2016-01-07T10:16:09.000Z</published>
+    <updated>2016-01-07T10:20:35.000Z</updated>
+    <content type="html"><![CDATA[<p>首先，包含如下头文件：</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">"sys/time.h"</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>实现函数，分不同平台：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> Common::getTime() &#123;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">ifdef</span> _WIN32</span></span><br><span class="line">    FILETIME ft;</span><br><span class="line">    <span class="keyword">double</span> t;</span><br><span class="line">    GetSystemTimeAsFileTime(&amp;ft);</span><br><span class="line">    <span class="comment">/* Windows file time (time since January 1, 1601 (UTC)) */</span></span><br><span class="line">    t  = ft.dwLowDateTime/<span class="number">1.0e7</span> + ft.dwHighDateTime*(<span class="number">4294967296.0</span>/<span class="number">1.0e7</span>);</span><br><span class="line">    <span class="comment">/* convert to Unix Epoch time (time since January 1, 1970 (UTC)) */</span></span><br><span class="line">    <span class="keyword">return</span> (t - <span class="number">11644473600.0</span>);</span><br><span class="line"><span class="preprocessor">#<span class="keyword">else</span></span></span><br><span class="line">    <span class="keyword">struct</span> timeval v;</span><br><span class="line">    gettimeofday(&amp;v, (<span class="keyword">struct</span> timezone *) <span class="literal">NULL</span>);</span><br><span class="line">    <span class="comment">/* Unix Epoch time (time since January 1, 1970 (UTC)) */</span></span><br><span class="line">    <span class="keyword">return</span> v.tv_sec + v.tv_usec/<span class="number">1.0e6</span>;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>首先，包含如下头文件：</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</]]>
+    </summary>
+    
+      <category term="C++" scheme="http://gdsgtcz.github.io/tags/C/"/>
+    
+      <category term="C++" scheme="http://gdsgtcz.github.io/categories/C/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[iOS开发：获取设备网络状态]]></title>
