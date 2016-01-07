@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Cocos2d-x iOS," />
+  <meta name="keywords" content="iOS Cocos2d-x," />
 
 
 
@@ -53,29 +53,43 @@
 
 
 
-<meta name="description" content="引言
+<meta name="description" content="在开发iOS应用或者游戏时，我们可以通过Reachability库进行iOS设备的网络监测。
+首先，Reachability官方下载地址在这里。
+###1. Reachability简介
+Reachablity 是一个iOS下检测,iOS设备网络环境用的库。
 
-在xcode下使用cocos2d-x+Lua开发游戏项目的过程中，我们只是把cocos2d-x作为一种工具在使用，而作为cocos2d-x引擎本身，我们基本不会修改底层（或者说是很少修改），那么问题来了，如果我们需要重编译或者archive打包的时候，编译cocos的库将会占据大部分的时间，基于这种情况，如果我们把cocos（或者一些不会修改的依赖项目）编辑成一个静态库的话，势必会节省很多">
+监视设备网络是否可用。
+监视当前网络的连接方式。
+监测网络连接方式的变更。
+
+简单点说，Reachablity可以监测当前设备是未联网状态">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Cocos2d-x在xcode下开发生成静态库添加到项目">
-<meta property="og:url" content="http://gdsgtcz.github.io/2015/12/22/Cocos2d-x在xcode下开发生成静态库添加到项目/index.html">
+<meta property="og:title" content="iOS开发：获取设备网络状态">
+<meta property="og:url" content="http://gdsgtcz.github.io/2016/01/07/iOS开发：获取设备网络状态/index.html">
 <meta property="og:site_name" content="明天不用上课">
-<meta property="og:description" content="引言
+<meta property="og:description" content="在开发iOS应用或者游戏时，我们可以通过Reachability库进行iOS设备的网络监测。
+首先，Reachability官方下载地址在这里。
+###1. Reachability简介
+Reachablity 是一个iOS下检测,iOS设备网络环境用的库。
 
-在xcode下使用cocos2d-x+Lua开发游戏项目的过程中，我们只是把cocos2d-x作为一种工具在使用，而作为cocos2d-x引擎本身，我们基本不会修改底层（或者说是很少修改），那么问题来了，如果我们需要重编译或者archive打包的时候，编译cocos的库将会占据大部分的时间，基于这种情况，如果我们把cocos（或者一些不会修改的依赖项目）编辑成一个静态库的话，势必会节省很多">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-3eb8c5dd5121b2fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-cc867714ab5c327a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-0009bfca342ce2c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-b17549eac35ac0c7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-a7e731a3908c8e9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-5b48e1dd6545534f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1195707-2724cb59e1f9e6cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2015-12-22T12:22:06.000Z">
+监视设备网络是否可用。
+监视当前网络的连接方式。
+监测网络连接方式的变更。
+
+简单点说，Reachablity可以监测当前设备是未联网状态">
+<meta property="og:updated_time" content="2016-01-07T06:53:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cocos2d-x在xcode下开发生成静态库添加到项目">
-<meta name="twitter:description" content="引言
+<meta name="twitter:title" content="iOS开发：获取设备网络状态">
+<meta name="twitter:description" content="在开发iOS应用或者游戏时，我们可以通过Reachability库进行iOS设备的网络监测。
+首先，Reachability官方下载地址在这里。
+###1. Reachability简介
+Reachablity 是一个iOS下检测,iOS设备网络环境用的库。
 
-在xcode下使用cocos2d-x+Lua开发游戏项目的过程中，我们只是把cocos2d-x作为一种工具在使用，而作为cocos2d-x引擎本身，我们基本不会修改底层（或者说是很少修改），那么问题来了，如果我们需要重编译或者archive打包的时候，编译cocos的库将会占据大部分的时间，基于这种情况，如果我们把cocos（或者一些不会修改的依赖项目）编辑成一个静态库的话，势必会节省很多">
+监视设备网络是否可用。
+监视当前网络的连接方式。
+监测网络连接方式的变更。
+
+简单点说，Reachablity可以监测当前设备是未联网状态">
 
 
 
@@ -87,7 +101,7 @@
   };
 </script>
 
-  <title> Cocos2d-x在xcode下开发生成静态库添加到项目 | 明天不用上课 </title>
+  <title> iOS开发：获取设备网络状态 | 明天不用上课 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -238,7 +252,7 @@
             
             
               
-                Cocos2d-x在xcode下开发生成静态库添加到项目
+                iOS开发：获取设备网络状态
               
             
           </h1>
@@ -247,8 +261,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-22T20:18:57+08:00" content="2015-12-22">
-              2015-12-22
+            <time itemprop="dateCreated" datetime="2016-01-07T14:51:38+08:00" content="2016-01-07">
+              2016-01-07
             </time>
           </span>
 
@@ -257,8 +271,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Cocos2d-x/" itemprop="url" rel="index">
-                    <span itemprop="name">Cocos2d-x</span>
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
                   </a>
                 </span>
 
@@ -273,8 +287,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/22/Cocos2d-x在xcode下开发生成静态库添加到项目/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/22/Cocos2d-x在xcode下开发生成静态库添加到项目/" itemprop="commentsCount"></span>
+                <a href="/2016/01/07/iOS开发：获取设备网络状态/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/07/iOS开发：获取设备网络状态/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -299,46 +313,22 @@
       
 
       
-        <span itemprop="articleBody"><p><strong><em>引言</em></strong></p>
-<blockquote>
-<p>在xcode下使用cocos2d-x+Lua开发游戏项目的过程中，我们只是把cocos2d-x作为一种工具在使用，而作为cocos2d-x引擎本身，我们基本不会修改底层（或者说是很少修改），那么问题来了，如果我们需要重编译或者archive打包的时候，编译cocos的库将会占据大部分的时间，基于这种情况，如果我们把cocos（或者一些不会修改的依赖项目）编辑成一个静态库的话，势必会节省很多不必要的编译时间。</p>
-</blockquote>
-<h1 id="u4F7F_u7528cocos2d-x_uFF0BLua_u5F00_u53D1_uFF0C_u4F1A_u7528_u5230_u54EA_u4E9B_u5E95_u5C42_u9879_u76EE_uFF08_u5E93_uFF09"><a href="#u4F7F_u7528cocos2d-x_uFF0BLua_u5F00_u53D1_uFF0C_u4F1A_u7528_u5230_u54EA_u4E9B_u5E95_u5C42_u9879_u76EE_uFF08_u5E93_uFF09" class="headerlink" title="使用cocos2d-x＋Lua开发，会用到哪些底层项目（库）"></a>使用cocos2d-x＋Lua开发，会用到哪些底层项目（库）</h1><p><img src="http://upload-images.jianshu.io/upload_images/1195707-3eb8c5dd5121b2fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="55EA7405-B045-4DD9-8252-DFBC26653C77.png"></p>
+        <span itemprop="articleBody"><p>在开发iOS应用或者游戏时，我们可以通过<strong>Reachability</strong>库进行iOS设备的网络监测。</p>
+<p>首先，Reachability官方下载地址在<a href="https://developer.apple.com/library/ios/samplecode/Reachability/Introduction/Intro.html" target="_blank" rel="external">这里</a>。</p>
+<p>###1. Reachability简介</p>
+<p>Reachablity 是一个iOS下检测,iOS设备网络环境用的库。</p>
 <ul>
-<li>cocos2d-x项目<br>cocos源码项目，工程文件是位于 cocos2d-x/build下的cocos2d_libs.xcodeproj文件。</li>
+<li>监视设备网络是否可用。</li>
+<li>监视当前网络的连接方式。</li>
+<li>监测网络连接方式的变更。</li>
 </ul>
-<ul>
-<li><p>cocos2d_lua_bindings项目<br>cocos2d_lua_bindings作为cocos的绑定项目，只是把cocos的底层功能绑定到lua使用，如果cocos底层不需要修改的话，那么lua-cocos2d-x也是可以打成静态库加到项目中使用的。工程文件是位于cocos2d-x/cocos/scripting/lua-bindings/proj.ios_mac下的cocos2d_lua_bindings.xcodeproj文件。<br>注：如果只是使用cocos2d-x开发而不是使用cocos2d-x+Lua的话，则不会有cocos2d_lua_bindings这个项目。</p>
-</li>
-<li><p>simulator项目<br>simulator是适用于模拟器的项目，我们完全可以把它对应的iOS和Mac的target打成静态库，以对应不同平台。文件是位于cocos2d-x/tools/simulator/libsimulator/proj.ios_mac下的libsimulator.xcodeproj文件。<br><strong>所以，在使用cocos2d-x开发中，我们可以把cocos2d-x、lua-cocos2dx、simulator项目编译成静态库文件使用</strong></p>
-<h1 id="u7F16_u8BD1_u9759_u6001_u5E93"><a href="#u7F16_u8BD1_u9759_u6001_u5E93" class="headerlink" title="编译静态库"></a>编译静态库</h1></li>
-<li><p>以cocos2d-x项目为例，Delete项目下的cocos项目，打开 cocos2d-x/build/cocos2d_libs.xcodeproj工程，选择相应的target。<br>如图，在1处选择targets为iOS或者Mac，在2处选择为release或者debug版本。<br><img src="http://upload-images.jianshu.io/upload_images/1195707-cc867714ab5c327a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="4FB6CD1E-E18E-4C9C-82D9-2D6D4FA39F6B.png"></p>
-</li>
-</ul>
-<ul>
-<li>编译该工程，编译成功后，在Products显示编译成功的静态库，右击查看生成在本地的静态库。</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/1195707-0009bfca342ce2c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="F7182C01-EB6A-4717-8160-E19A6D992FC8.png"></p>
-<ul>
-<li>如图，是生成的各个版本的静态库。</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/1195707-b17549eac35ac0c7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="48FBD211-2E2B-4670-A979-01C3EC93C7EB.png"></p>
-<ul>
-<li>可以通过命令：“lipo -info XXX.a”可以查看静态库的适用环境。</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/1195707-a7e731a3908c8e9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="F2C4F370-4A9B-4E00-8CF4-86476444062A.png"></p>
-<ul>
-<li>将.a静态库文件放在项目路径下（建议新建目录）。</li>
-<li>打开xcode，选择targets，选择Build Phases下的Link Binary With Libraries，点击左下角的“＋”后选择“Add Other…”，选择加到项目路径下的.a文件。</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/1195707-5b48e1dd6545534f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="136A5798-56C1-4F37-9EA9-97DFAE08F4FA.png"></p>
-<ul>
-<li>如图，添加成功。</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/1195707-2724cb59e1f9e6cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="F2F45CD1-97DB-4358-A6CA-0B92E2E560A0.png"></p>
-<ul>
-<li>cocos2d_lua_binding项目和libsimulator项目编译生成静态库并加入到项目流程类似，不再赘述。<br><strong>注：为了通用起见可以将几个.a库进行合并，这样生成的静态库既可以在模拟器下运行，也可以在真机下运行，合并的命令类似于：lipo -create ./Debug-iphonesimulator/libCocosDenshion\ iOS.a  ./Debug-iphoneos/libCocosDenshion\ iOS.a  -output $OUTPUTDIR_PATH/libCocosDenshion\ iOS.a</strong></li>
-</ul>
+<p>简单点说，Reachablity可以监测当前设备是未联网状态还是连接2g,3g,4g或wifi状态，并且当网络连接类型改变的时候可以实时监测通知。</p>
+<p>###2. Reachability使用</p>
+<p>把下载的Reachability.h和Reachability.m文件加到项目中，在入口文件处包含Reachability头文件并加入下列代码：<br>（例如我使用cocos2d-x开发，就在AppController.mm文件中处理）</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 监测网络情况</span></span><br><span class="line">[[NSNotificationCenter defaultCenter] <span class="string">addObserver:</span>self</span><br><span class="line"><span class="label">                                         selector:</span><span class="annotation">@selector</span>(<span class="string">reachabilityChanged:</span>)</span><br><span class="line"><span class="label">                                             name:</span> kReachabilityChangedNotification</span><br><span class="line"><span class="label">                                           object:</span> nil];</span><br><span class="line">Reachability* hostReach = [Reachability <span class="string">reachabilityWithHostName:</span>@<span class="string">"www.baidu.com"</span>];</span><br><span class="line">[hostReach startNotifier];</span><br></pre></td></tr></table></figure>
+<p>检测某一特定站点的接续状况，这里以百度为例，reachabilityChanged方法是当网络环境改变时回调的函数，实现类似如下：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//网络环境改变回调函数</span></span><br><span class="line">- (<span class="keyword">void</span>)reachabilityChanged:(<span class="built_in">NSNotification</span> *)note</span><br><span class="line">&#123;</span><br><span class="line">    Reachability* curReach = [note object];</span><br><span class="line">    <span class="built_in">NSParameterAssert</span>([curReach isKindOfClass: [Reachability class]]);</span><br><span class="line">    NetworkStatus status = [curReach currentReachabilityStatus];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">switch</span> (status)</span><br><span class="line">    &#123;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> NotReachable:</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"====当前网络状态不可达======="</span>);</span><br><span class="line">            <span class="comment">//其他处理</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> ReachableViaWiFi:</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"====当前网络状态为Wifi======="</span>);</span><br><span class="line">            <span class="comment">//其他处理</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> kReachableVia2G:</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"====当前网络状态为2G======="</span>);</span><br><span class="line">            <span class="comment">//其他处理</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> kReachableVia3G:</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"====当前网络状态为3G======="</span>);</span><br><span class="line">            <span class="comment">//其他处理</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> kReachableVia4G:</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"====当前网络状态为4G======="</span>);</span><br><span class="line">            <span class="comment">//其他处理</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">case</span> ReachableViaWWAN:</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"====当前网络状态为WWAN======="</span>);</span><br><span class="line">            <span class="comment">//其他处理</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"你是外星来的吗？"</span>);</span><br><span class="line">            <span class="comment">//其他处理</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据status判断当前网络状态变成哪种方式，在“//其他处理”处可加入其他处理代码。</p>
 </span>
       
     </div>
@@ -347,7 +337,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Cocos2d-x-iOS/" rel="tag">#Cocos2d-x iOS</a>
+            <a href="/tags/iOS-Cocos2d-x/" rel="tag">#iOS Cocos2d-x</a>
           
         </div>
       
@@ -356,17 +346,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/22/iOS开发证书与配置文件的使用/" rel="next" title="iOS开发证书与配置文件的使用">
-                <i class="fa fa-chevron-left"></i> iOS开发证书与配置文件的使用
+              <a href="/2016/01/06/C++封装zlib库压缩字符串/" rel="next" title="C++封装zlib库压缩字符串">
+                <i class="fa fa-chevron-left"></i> C++封装zlib库压缩字符串
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/22/iOS开发：获取设备IP地址/" rel="prev" title="iOS开发：获取设备IP地址">
-                iOS开发：获取设备IP地址 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -393,8 +379,8 @@
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/12/22/Cocos2d-x在xcode下开发生成静态库添加到项目/"
-           data-title="Cocos2d-x在xcode下开发生成静态库添加到项目" data-url="http://gdsgtcz.github.io/2015/12/22/Cocos2d-x在xcode下开发生成静态库添加到项目/">
+      <div class="ds-thread" data-thread-key="2016/01/07/iOS开发：获取设备网络状态/"
+           data-title="iOS开发：获取设备网络状态" data-url="http://gdsgtcz.github.io/2016/01/07/iOS开发：获取设备网络状态/">
       </div>
     
   </div>
@@ -509,7 +495,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#u4F7F_u7528cocos2d-x_uFF0BLua_u5F00_u53D1_uFF0C_u4F1A_u7528_u5230_u54EA_u4E9B_u5E95_u5C42_u9879_u76EE_uFF08_u5E93_uFF09"><span class="nav-number">1.</span> <span class="nav-text">使用cocos2d-x＋Lua开发，会用到哪些底层项目（库）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#u7F16_u8BD1_u9759_u6001_u5E93"><span class="nav-number">2.</span> <span class="nav-text">编译静态库</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
